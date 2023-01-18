@@ -18,6 +18,10 @@
   <body>
     Mise en place d'une carte avec Leaflet
     <div id="map"></div>
-    <script> L.map("map") </script>
+    <script> 
+      let map = L.map("map", {center: [31.262218, 34.801472], zoom:17}); 
+      L.tileLayer(
+        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTO(map);
+    </script>
   </body>
 </html>
