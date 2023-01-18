@@ -2,8 +2,22 @@
 <html>
   <head>
     <title>Basic map</title>
+    <link rel="stylesheet" href="css/leaflet.css">
+    <script src="js/leaflet.js"></script>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+      }
+      html, body, #map {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
-    A mettre en place
+    Mise en place d'une carte avec Leaflet
+    <div id="map"></div>
+    <script> L.map("map") </script>
   </body>
 </html>
