@@ -18,11 +18,20 @@
   <body>
     <div id="map"></div>
     <script> 
-      let map = L.map("map", {center: [31.262218, 34.801472], zoom:17}); 
+      let map = L.map("map", {center: [45.4353964,6.89880951], zoom:17}); 
+
       L.tileLayer(
         "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
         {attribution: '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>'}
         ).addTo(map);
+
+      fetch("geojson/Combe_des_lanches.geojson")
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          L.geoJSON(data).addTo(map);
+        });
     </script>
   </body>
 </html>
