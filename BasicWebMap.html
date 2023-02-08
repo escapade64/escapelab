@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Basic map</title>
+    <link rel="icon" href="images/mountain.png" type="image/icon type">
     <link rel="stylesheet" href="css/leaflet.css">
     <script src="js/leaflet.js"></script>
     <style>
@@ -16,22 +17,24 @@
     </style>
   </head>
   <body>
-    <div id="map"></div>
-    <script> 
-      let map = L.map("map", {center: [45.4353964,6.89880951], zoom:17}); 
+        <div id="map"></div>
+        <script> 
+           let map = L.map("map", {center: [45.4353964,6.89880951], zoom:17}); 
 
-      L.tileLayer(
-        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-        {attribution: '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>'}
-        ).addTo(map);
+             L.tileLayer(
+               "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+               {attribution: '&copy; <a href="http://' + 'www.openstreetmap.org/copyright">OpenStreetMap</a>'}
+             ).addTo(map);
 
-      fetch("geojson/Combe_des_lanches.geojson")
-        .then(function(response) {
+           fetch("geojson/Combe_des_lanches.geojson")
+           .then(function(response) {
           return response.json();
-        })
-        .then(function(data) {
+           })
+           .then(function(data) {
           L.geoJSON(data).addTo(map);
-        });
-    </script>
+         });
+
+        </script>
+      </div>      
   </body>
 </html>
