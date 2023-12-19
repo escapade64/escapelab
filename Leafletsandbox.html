@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaflet Layers with Opacity</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  // Données numériques (par exemple, des valeurs entre 0 et 100)
+  var data = [20, 50, 80];
+
+  // Créer la carte
+  var map = L.map('map').setView([0, 0], 2);
+
+  // Ajouter des couches de tuiles de différentes sources avec différentes opacités
+  var tileLayer1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    opacity: 0.7 // Opacité pour la première couche
+  }).addTo(map);
+
+  var tileLayer2 = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+    attribution: '© CartoDB',
+    opacity: 0.5 // Opacité pour la deuxième couche
+  }).addTo(map);
+
+  // Créer des couches pour différentes plages de valeurs
+  var layer1 = L.layerGroup(); // Par exemple, valeurs < 30
+  var layer2 = L.layerGroup(); // Par exemple, valeurs entre 30 et 70
+  var layer3 = L.layerGroup(); // Par exemple, valeurs > 70
+
+  // Remplir les couches en fonction des valeurs
+  for (var i = 0; i < data.length; i++) {
+    var value = data[i];
+    var marker = L.marker([0, i * 30]); // Utilisez les coordonnées appropriées
+    marker.bindPopup('Value: ' + value);
+    
+    if (value < 30) {
+      layer1.addLayer(marker);
+    } else if (value >= 30 && value <= 70) {
+      layer2.addLayer(marker);
+    } else {
+      layer3.addLayer(marker);
+    }
+  }
+
+  // Ajouter les couches au contrôle de couches
+  var overlayMaps = {
+    'Values < 30': layer1,
+    'Values 30-70': layer2,
+    'Values > 70': layer3
+  };
+
+  // Ajouter le contrôle de couches à la carte
+  L.control.layers({ 'OpenStreetMap': tileLayer1, 'CartoDB': tileLayer2 }, overlayMaps).addTo(map);
+</script>
+
+</body>
+</html>
+
