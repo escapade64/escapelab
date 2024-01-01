@@ -29,7 +29,9 @@
       var map = L.map('map', { attributionControl: false } ).setView([48.86299401817328, -3.0396025433288028], 16.0);
       L.control.attribution( { prefix: false } ).addTo( map );
       
-      var photo_layer = L.tileLayer('https://escapade64.github.io/escapelab/MaudezPhoto/{z}/{x}/{y}.png', {
+
+      // adresse absolue : 'https://escapade64.github.io/escapelab/MaudezPhoto/{z}/{x}/{y}.png'
+      var photo_layer = L.tileLayer('MaudezPhoto/{z}/{x}/{y}.png', {
         minZoom: 14,
         maxZoom: 18,
         tms: false,
@@ -38,7 +40,7 @@
       }).addTo(map);
 
 
-      var eau5m_layer = L.tileLayer('https://escapade64.github.io/escapelab/Maudez5/{z}/{x}/{y}.png', {
+      var eau5m_layer = L.tileLayer('Maudez5/{z}/{x}/{y}.png', {
         minZoom: 14,
         maxZoom: 18,
         tms: false,
@@ -46,9 +48,19 @@
         attribution: 'Created by EscapeLab'
       });
 
+      var eau10m_layer = L.tileLayer('Maudez10/{z}/{x}/{y}.png', {
+        minZoom: 14,
+        maxZoom: 18,
+        tms: false,
+        opacity: 0.9, // Opacité pour la couche
+        attribution: 'Created by EscapeLab'
+      });
+
+
       // Créer un objet de contrôle des couches
       var baseLayers = {
-       '5m': eau5m_layer
+       '5m': eau5m_layer,
+       '10m': eau10m_layer
       };
 
       // Ajouter le contrôle des couches à la carte
