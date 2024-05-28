@@ -39,5 +39,6 @@ Solutions préconisées :
 - Génération des tiles avec Qgis
 - API météo sur Meteoblue (ils ont la nébulosité), même s'il faut payer
 - Données marée à rentre à la main dans tableau sur serveur
-- Données vedette à rentrer également à la main
+- Données vedette à rentrer également à la main (Vedettes de Bréhat, tours de l'île, Sur Mer, vedettes de Perros ou de St Quay).
+- API de tracking bateau avec affichage carte (là, il y aurait du niveau...)  
   
