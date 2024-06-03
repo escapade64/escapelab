@@ -14,7 +14,7 @@ Principes :
 
 Données de base : 
 - Heure
-- Position
+- Position GPS du téléphone
 - Hauteur d'eau
 - Montant / descendant
 - Heure de la prochaine étale
@@ -26,7 +26,7 @@ Type de services :
 - Marquage point de casier
 - Marquage point de peche
 - Infos météo : Vent, nébulosité et évolution à 6h
-
+- Hauteur d'eau estimée sous le bateau, sur la base du litto3D (zone proche et info type radar)
 
 Découpage et livrables : 
 - Une page accueil sans carte avec données de base, hyper slim
@@ -36,7 +36,7 @@ Découpage et livrables :
 
 Solutions préconisées :
 - Carto Leaflet
-- Génération des tiles avec Qgis
+- Génération des tiles avec Qgis ou via appli perso sous Python
 - API météo sur Meteoblue (ils ont la nébulosité), même s'il faut payer
 - Données marée à rentre à la main dans tableau sur serveur
 - Données vedette à rentrer également à la main (Vedettes de Bréhat, tours de l'île, Sur Mer, vedettes de Perros ou de St Quay).
