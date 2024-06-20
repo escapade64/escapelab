@@ -25,7 +25,9 @@
 <body>
 
 <div id="clock"></div>
+<div id="position">Obtention de la position...</div>
 
+    
 <script>
     function updateClock() {
         const now = new Date();
@@ -35,6 +37,42 @@
         const timeString = `${hours}:${minutes}:${seconds}`;
         document.getElementById('clock').textContent = timeString;
     }
+
+    function updatePosition(position) {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        document.getElementById('position').textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+    }
+
+    function showError(error) {
+        switch(error.code) {
+            case error.PERMISSION_DENIED:
+                document.getElementById('position').textContent = "Utilisateur a refusé la demande de géolocalisation.";
+                break;
+            case error.POSITION_UNAVAILABLE:
+                document.getElementById('position').textContent = "Les informations de localisation sont indisponibles.";
+                break;
+            case error.TIMEOUT:
+                document.getElementById('position').textContent = "La demande de localisation a expiré.";
+                break;
+            case error.UNKNOWN_ERROR:
+                document.getElementById('position').textContent = "Une erreur inconnue s'est produite.";
+                break;
+        }
+    }
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(updatePosition, showError);
+    } else {
+        document.getElementById('position').textContent = "La géolocalisation n'est pas prise en charge par ce navigateur.";
+    }
+
+
+
+
+
+
+    
 
     setInterval(updateClock, 1000);
     updateClock(); // Initial call to display the time immediately
