@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher les données JSON</title>
+    <style>
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Experiment</h1>
+    <div id="horloge"></div>
+    <div id="contenu"></div>
+
+    <script>
+ 
+        let maree =[];
+        let mareeb=[];
+
+
+        function afficherDonnees(data) {
+            const contenuDiv = document.getElementById('contenu');
+            
+            // Créer un tableau HTML
+            const table = document.createElement('table');
+            let i = 0;
+            let j = 0;
+            
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                j = 0;
+                let mareebRow = []; // Créer une nouvelle ligne pour mareeb
+                row.forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                    mareebRow.push(parseFloat(cell)); // Ajouter la cellule à la ligne de mareeb
+                    j++;
+                });
+                table.appendChild(tr);
+                mareeb.push(mareebRow); // Ajouter la ligne à la matrice mareeb
+                i++;
+            });
+
+            // Ajouter le tableau à la div contenu
+            //contenuDiv.appendChild(table);
+            
+          contenuDiv.textContent=mareeb[0][1];
+
+           // contenuDiv.textContent += "\n" + JSON.stringify(mareeb, null, 2);
+        }
+
+        function afficherHauteur() {
+           // récuperer le lieu d'affichage 
+            const contenuDiv = document.getElementById('contenu');
+            const horlogeDiv = document.getElementById('horloge');
+           // récuperer l'heure 
+           
+            const now = new Date();
+            const heureactuelle = now.getTime();
+            
+            // Trouver les lignes avant et après l'heure actuelle
+            let ligneAvant = null;
+            let ligneApres = null;
+
+            for (let i = 0; i < mareeb.length; i++) {
+                
+    
+                if (mareeb[i][0] < heureactuelle) {
+                    ligneAvant = i;
+                } else if (mareeb[i][0] > heureactuelle && ligneApres === null) {
+                    ligneApres = i;
+                    break; // Exit loop as we only need the first occurrence after
+                }
+            }
+
+            horlogeDiv.textContent= now ;
+            let previous = new Date( mareeb[ligneAvant][0]);
+            contenuDiv.textContent= "Derniere maree : " + previous + "Hauteur : " + mareeb[ligneAvant][1] + "m" ;
+        }
+
+
+        // Appeler la fonction pour lire et afficher le fichier JSON
+       
+        async function chargerDonnees() {
+        try {
+        const response = await fetch('ete2024.json');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        maree = await response.json(); // Stocker les données dans la variable globale
+
+        afficherDonnees(maree);
+        afficherHauteur();
+
+        } catch (error) {
+        document.write('Erreur de récupération des données:', error);
+        }
+        }
+            
+        chargerDonnees();
+
+    </script>
+</body>
+</html>
