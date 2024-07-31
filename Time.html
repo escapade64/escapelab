@@ -25,10 +25,22 @@
 <body>
 
 <div id="clock"></div>
+
 <div id="position">Obtention de la position...</div>
 
+<div id="maree"></div>
+
     
+<script src="js/tide.js"></script>
+
+
+
+
 <script>
+
+
+    document.getElementById('maree').textContent = 'et voilà';
+
     function updateClock() {
         const now = new Date();
         const hours = String(now.getHours()).padStart(2, '0');
@@ -68,14 +80,9 @@
     }
 
 
-
-
-
-
-    
-
     setInterval(updateClock, 1000);
     updateClock(); // Initial call to display the time immediately
+
 </script>
 
 </body>

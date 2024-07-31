@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test des fonctions JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tester des fonctions JavaScript</h1>
+    <button onclick="testFunction()">Exécuter la fonction</button>
+    <div id="result"></div>
+
+    <script>
+   
+
+        // import { horaire } from './js/tide.js';
+
+        const horaire = [    {time : 1721436840.0, value : 2.74},  {time : 1721458500.0, value : 9.1}  ];
+
+        function testFunction() {
+            // Exemple de fonction JavaScript
+            const result = hauteurMaree(123);
+            
+            // Afficher le résultat dans la div avec l'id 'result'
+            document.getElementById('result').innerText = 'Le résultat est : ' + result;
+        }
+
+        function hauteurMaree(double heure) {
+            return horaire[1].value; 
+        }
+    </script>
+</body>
+</html>
