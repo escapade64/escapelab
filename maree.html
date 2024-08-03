@@ -27,7 +27,20 @@
     Bar 42cm
     <br>
     Homard 8,7cm
-    
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+    <img src="images/classique.jpg" alt="Noeud de peche classique">
+    <br>
+    <img src="images/tresse.jpg" alt="Noeud de liaison tresse fluoro">
+
 
 
     <script>
@@ -40,6 +53,8 @@
         // Kerpont hauteur mesurée 2.6 donné ici sans marge, c'est aussi la cale de l'Arcouest
         let hkerpont=2.6; 
         let hbaie =5.4;
+        let hsudmaudez=6.0;
+        let hnordmaudez=8.0;
 
         // Récupération des zones d'affichage
             const dateDiv = document.getElementById('date');     
@@ -132,6 +147,11 @@
             let tfin=mareeb[ligneApres][0];
             let marnage = hfin-hdep;
             let tendance = "montante";
+            //estimation du coefficient de marée
+            let coef = Math.round( 120.26-19.812*Math.min(hdep,hfin));
+            let tendancecoef = " en hausse";
+            let coeftrend = Math.min(hdep,hfin)-Math.min(mareeb[ligneAvant+2][1],mareeb[ligneApres+2][1]);
+            if (coeftrend<0) {tendancecoef =" en baisse"}
     
          
             let hactuelle = 0;
@@ -185,11 +205,13 @@
 
             // Affichage
             dateDiv.textContent=dateComplete + "  "+haff(now)  ;
-            horlogeDiv.textContent= "Hauteur d'eau actuelle : " + hactuelle.toFixed(2) +"m  "+ tendance;
+            horlogeDiv.innerHTML= "Hauteur d'eau actuelle : " + hactuelle.toFixed(2) +"m  "+ tendance + "<br>Coefficient : "+ coef + tendancecoef;
             contenuDiv.textContent= "Prochaine marée : " + haff(date) + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
             corpsDiv.textContent= "Bateau " + passage(hcorps)  ;
             kerpontDiv.innerHTML = "Kerpont et cale Arcouest " + passage(hkerpont+marge) + "<br>";
             kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche " + passage (hbaie+marge)+ "<br>";
+            kerpontDiv.innerHTML += "Passage Sud Maudez " + passage (hsudmaudez+marge)+ "<br>";
+            kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) " + passage (hnordmaudez+marge)+ "<br>";
         }
 
 
