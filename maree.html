@@ -40,6 +40,7 @@
     <img src="images/classique.jpg" alt="Noeud de peche classique">
     <br>
     <img src="images/tresse.jpg" alt="Noeud de liaison tresse fluoro">
+    
     Weather data (https://content.meteoblue.com/en/business-solutions/weather-apis) provided by meteoblue (https://www.meteoblue.com)
 
 
@@ -105,12 +106,11 @@
         }
 
         function afficherHauteur() {
-           // récuperer le lieu d'affichage 
 
-           // récuperer l'heure 
-           
+           // récuperer l'heure            
             const now = new Date();
             const heureactuelle = now.getTime();
+            
             // Tableau des jours de la semaine en français
             const joursSemaine = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
             // Obtenir le jour de la semaine
@@ -132,7 +132,6 @@
 
             for (let i = 0; i < mareeb.length; i++) {
                 
-    
                 if (mareeb[i][0] < heureactuelle) {
                     ligneAvant = i;
                 } else if (mareeb[i][0] > heureactuelle && ligneApres === null) {
@@ -147,7 +146,9 @@
             let tfin=mareeb[ligneApres][0];
             let marnage = hfin-hdep;
             let tendance = "montante";
-            //estimation du coefficient de marée
+            if (marnage<0) {tendance ="descendante"}
+            
+            //estimation du coefficient de marée. Ne fonctionne pas très bien car les hauteurs ne sont pas linéaires
             let coef = Math.round( 120.26-19.812*Math.min(hdep,hfin));
             let tendancecoef = " en hausse";
             let coeftrend = Math.min(hdep,hfin)-Math.min(mareeb[ligneAvant+2][1],mareeb[ligneApres+2][1]);
@@ -158,7 +159,7 @@
             let tcorps =0 ;
             
             let date= new Date( mareeb[ligneApres][0]);
-
+            let dateprev= new Date( mareeb[ligneAvant][0]);
             // zone de calculs 
 
             hactuelle = hfin - (Math.cos((heureactuelle-tdep)/(tfin-tdep)*Math.PI)+1) * (marnage)/2.0;
@@ -180,7 +181,6 @@
                     inext = +!inext;
                 }
 
-
             hdep=mareeb[ligneAvant+inext][1];
             hfin=mareeb[ligneApres+inext][1];
             tdep=mareeb[ligneAvant+inext][0];
@@ -194,7 +194,7 @@
                 }
                 else 
                 {   if (hpassage>hactuelle) 
-                    {prochain=" ne flotte pas dans les 6 prochaines heures "} 
+                    {prochain=" n'a pas d'eau dans les 6 prochaines heures "} 
                     else 
                     {prochain=" n'assèche pas dans les 6 prochaines heures"}
                 }
@@ -204,10 +204,12 @@
 
 
             // Affichage
-            dateDiv.textContent=dateComplete + "  "+haff(now)  ;
-            horlogeDiv.innerHTML= "Hauteur d'eau actuelle : " + hactuelle.toFixed(2) +"m  "+ tendance + "<br>Coefficient : "+ coef + tendancecoef;
-            contenuDiv.textContent= "Prochaine marée : " + haff(date) + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
-            corpsDiv.textContent= "Bateau " + passage(hcorps)  ;
+            dateDiv.innerHTML=dateComplete + "  "+haff(now) +"<br>" ;
+            dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  ;
+            horlogeDiv.innerHTML= "Dernière marée :     " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
+            horlogeDiv.innerHTML+= "Hauteur d'eau actuelle : " + hactuelle.toFixed(2) +"m  "+ tendance;
+            contenuDiv.innerHTML= "Prochaine marée : " + haff(date) + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
+            corpsDiv.innerHTML= "Bateau " + passage(hcorps)  ;
             kerpontDiv.innerHTML = "Kerpont et cale Arcouest " + passage(hkerpont+marge) + "<br>";
             kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche " + passage (hbaie+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Sud Maudez " + passage (hsudmaudez+marge)+ "<br>";
