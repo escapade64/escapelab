@@ -23,11 +23,14 @@
     <div id="kerpont"></div>
     <br>
     <br>
-    Bar 42cm
+    Bar 42 cm  <br>
+    Lieu 30 cm <br>
+    Chinchard 15 cm <br>
+    Maquereau 20 cm <br>
+    Mulet 30 cm <br>
     <br>
-    Lieu 30cm
-    <brW
-    Homard 8,7cm
+    Homard 8,7 cm <br>
+    Couteau 10 cm <br>
     <br>
     <br>
     <br>
@@ -48,6 +51,11 @@
 
     <script>
  
+        // lien vers fichier de données marée, en Json Unix Timestamp en ms et hauteur en m
+        mareefile='json/ete2024.json';
+ 
+        // API key Meteo Blue Free Weather API : RjWhm28CVvqGYbkA
+
         let maree =[];
         let mareeb=[];
         // marge bateau à ajouter aux données de hauteur
@@ -214,13 +222,13 @@
             horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
             horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance;
             contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
-            corpsDiv.innerHTML= "Bateau (" + hcorps + "m) " + passage(hcorps+marge)  ;
+            corpsDiv.innerHTML= "Bateau (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge)  ;
             kerpontDiv.innerHTML = "Heures de passages données avec " + marge + "m de marge :" + "<br>";
             kerpontDiv.innerHTML += "Kerpont et cale Arcouest (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
             kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche (" + hbaie + "m) " + passage (hbaie+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Sud Maudez (" + hsudmaudez + "m) " + passage (hsudmaudez+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) (" + hnordmaudez + "m) " + passage (hnordmaudez+marge)+ "<br>";
-            kerpontDiv.innerHTML += "<br>" + "Cale des Héaux de Bréhat (" + hheaux + "m) " + passage (hheaux)+ "<br>";
+            kerpontDiv.innerHTML += "<br>" + "Cale des Héaux de Bréhat (" + hheaux + "m) immergée " + passage (hheaux)+ "<br>";
         }
 
 
@@ -228,7 +236,7 @@
        
         async function chargerDonnees() {
         try {
-        const response = await fetch('ete2024.json');
+        const response = await fetch(mareefile);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
