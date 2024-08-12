@@ -6,12 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brescapade</title>
+    <link rel="icon" href="images/mountain.png" type="image/icon type">
+    <link rel="apple-touch-icon" href="images/mountain.png" type="image/icon type">
     <style>
     </style>
 </head>
-<body>
-    
 
+<body>
     <h1>Keranguilis - Live</h1>
     <div id="date"></div>
     <br>
@@ -37,6 +38,7 @@
 
 
 
+
     <img src="images/classique.jpg" alt="Noeud de peche classique">
     <br>
     <img src="images/tresse.jpg" alt="Noeud de liaison tresse fluoro">
@@ -48,14 +50,17 @@
  
         let maree =[];
         let mareeb=[];
-        let hcorps=4.1;
         // marge bateau à ajouter aux données de hauteur
-        let marge =1.0;
+        let marge =0.5;
+        // hauteurs d'eau des différents points d'intérêt
+        // Corps mort corderie
+        let hcorps=4.1;
         // Kerpont hauteur mesurée 2.6 donné ici sans marge, c'est aussi la cale de l'Arcouest
         let hkerpont=2.6; 
         let hbaie =5.4;
         let hsudmaudez=6.0;
         let hnordmaudez=8.0;
+        let hheaux=7.5;
 
         // Récupération des zones d'affichage
             const dateDiv = document.getElementById('date');     
@@ -204,16 +209,18 @@
 
 
             // Affichage
-            dateDiv.innerHTML=dateComplete + "  "+haff(now) +"<br>" ;
+            dateDiv.innerHTML=dateComplete + "  " +"<br>" ;
             dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  ;
-            horlogeDiv.innerHTML= "Dernière marée :     " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
-            horlogeDiv.innerHTML+= "Hauteur d'eau actuelle : " + hactuelle.toFixed(2) +"m  "+ tendance;
-            contenuDiv.innerHTML= "Prochaine marée : " + haff(date) + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
-            corpsDiv.innerHTML= "Bateau " + passage(hcorps)  ;
-            kerpontDiv.innerHTML = "Kerpont et cale Arcouest " + passage(hkerpont+marge) + "<br>";
-            kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche " + passage (hbaie+marge)+ "<br>";
-            kerpontDiv.innerHTML += "Passage Sud Maudez " + passage (hsudmaudez+marge)+ "<br>";
-            kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) " + passage (hnordmaudez+marge)+ "<br>";
+            horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
+            horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance;
+            contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
+            corpsDiv.innerHTML= "Bateau (" + hcorps + "m) " + passage(hcorps+marge)  ;
+            kerpontDiv.innerHTML = "Heures de passages données avec " + marge + "m de marge :" + "<br>";
+            kerpontDiv.innerHTML += "Kerpont et cale Arcouest (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
+            kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche (" + hbaie + "m) " + passage (hbaie+marge)+ "<br>";
+            kerpontDiv.innerHTML += "Passage Sud Maudez (" + hsudmaudez + "m) " + passage (hsudmaudez+marge)+ "<br>";
+            kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) (" + hnordmaudez + "m) " + passage (hnordmaudez+marge)+ "<br>";
+            kerpontDiv.innerHTML += "<br>" + "Cale des Héaux de Bréhat (" + hheaux + "m) " + passage (hheaux)+ "<br>";
         }
 
 
