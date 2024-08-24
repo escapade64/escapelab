@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch JSON from PHP</title>
+</head>
+<body>
+
+<h1>Fetch JSON from PHP</h1>
+
+<script>
+fetch('https://nominis.cef.fr/json/saintdujour.php')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json(); // Convertit la réponse en JSON
+    })
+    .then(data => {
+        document.body.innerHTML += `<p>Name: ${data.response}`;
+    })
+    .catch(error => {
+        document.body.innerHTML +=('There was a problem with the fetch operation:', error);
+    });
+
+</script>
+
+</body>
+</html>

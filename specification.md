@@ -27,6 +27,7 @@ Type de services :
 - Marquage point de peche
 - Infos météo : Vent, nébulosité et évolution à 6h
 - Hauteur d'eau estimée sous le bateau, sur la base du litto3D (zone proche et info type radar)
+- zones des cales à l'Arcouest et notamment le moment favorable où on peux accoster à l'Est sans les vedettes
 
 Découpage et livrables : 
 - Une page accueil sans carte avec données de base, hyper slim
