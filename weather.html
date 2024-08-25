@@ -63,7 +63,7 @@
                 const temperatureMin = data.data_day[0].temperature_min;
 
                 // Afficher les températures dans le DOM
-                document.getElementById('temperature-max').textContent = `${temperatureMax}°C`;
+                document.getElementById('temperature-max').textContent = data;
                 document.getElementById('temperature-min').textContent = `${temperatureMin}°C`;
             })
             .catch(error => {
