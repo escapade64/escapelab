@@ -36,10 +36,10 @@ Découpage et livrables :
 - Une page données avec paramètres et réglages
 
 Solutions préconisées :
+- Données marée à rentrer à la main dans tableau sur serveur
+- API météo sur Meteoblue (ils ont la nébulosité), même s'il faut payer
 - Carto Leaflet
 - Génération des tiles avec Qgis ou via appli perso sous Python
-- API météo sur Meteoblue (ils ont la nébulosité), même s'il faut payer
-- Données marée à rentre à la main dans tableau sur serveur
 - Données vedette à rentrer également à la main (Vedettes de Bréhat, tours de l'île, Sur Mer, vedettes de Perros ou de St Quay).
 - API de tracking bateau avec affichage carte (là, il y aurait du niveau...)  
   
