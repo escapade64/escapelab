@@ -49,30 +49,10 @@
         const url = `https://my.meteoblue.com/packages/basic-day?lat=${lat}&lon=${lon}&apikey=${apiKey}`;
 
         // Faire la requête GET à l'API
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json(); // Parse le JSON si la requête est réussie
-            })
-            .then(data => {
-                console.log(url);
-                console.log(data);
-                // Extraire les températures max et min
-                const temperatureMax = data.data_day[0].temperature_min;
-                const temperatureMin = data.data_day[0].temperature_min;
+        fetch(url) 
+            .then (res => {return res.json() }) 
+            .then (json =>console.log(json));
 
-                // Afficher les températures dans le DOM
-                document.getElementById('temperature-max').textContent = data.data_day.sealevelpressure_mean;
-                document.getElementById('temperature-min').textContent = data.data_day.sealevelpressure_mean;
-            })
-            .catch(error => {
-                // Gérer les erreurs
-                console.error('Erreur lors de la récupération des données :', error);
-                document.getElementById('temperature-max').textContent = 'Erreur';
-                document.getElementById('temperature-min').textContent = 'Erreur';
-            });
     </script>
 </body>
 </html>
