@@ -59,15 +59,14 @@
             .then(data => {
                 console.log(url);
                 console.log(data);
-                const obj=JSON.parse(data);
-                console.log(obj);
+                console.log(data.data_day.sealevelpressure_mean);
                 // Extraire les températures max et min
                 const temperatureMax = obj.data_day;
                 const temperatureMin = data.data_day[0].temperature_min;
 
                 // Afficher les températures dans le DOM
-                document.getElementById('temperature-max').textContent = data.dat_day;
-                document.getElementById('temperature-min').textContent = `${temperatureMin}°C`;
+                document.getElementById('temperature-max').textContent = data.data_day.sealevelpressure_meany;
+                document.getElementById('temperature-min').textContent = data.data_day.sealevelpressure_mean`;
             })
             .catch(error => {
                 // Gérer les erreurs
