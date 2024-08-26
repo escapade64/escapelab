@@ -36,8 +36,10 @@
         // Faire la requête GET à l'API
         fetch(url) 
             .then (res => {return res.json() }) 
-            .then (   json =>console.log(json);
+            .then (   json =>
+                        {console.log(json);
                       affichage(json);
+                        }
                      );
 
     </script>
