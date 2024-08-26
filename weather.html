@@ -11,25 +11,7 @@
 </head>
 
 <body>
-    <h1>Keranguilis - Live</h1>
-    <div id="date"></div>
-    <br>
-    <div id="horloge"></div>
-    <br>
-    <div id="contenu"></div>
-    <br>
-    <div id="corps"></div>
-    <br>
-    <div id="kerpont"></div>
-    <br>
-    <br>
-
-    <h1>Température actuelle</h1>
-    <p>Température max: <span id="temperature-max">Chargement...</span></p>
-    <p>Température min: <span id="temperature-min">Chargement...</span></p>
-
-
-    Pour afficher la météo 
+    <pre id="display"></pre>
 <br>
 
  
@@ -38,20 +20,25 @@
 
 
     <script>
-        // Remplacez ces valeurs par vos propres coordonnées et clé API
+        // Valeurs pour Bréhat et clé API
         const lat = "48.8545";
         const lon = "-3.0055";
         const apiKey = "RjWhm28CVvqGYbkA";
 
-    
-
         // URL de l'API avec les paramètres nécessaires
         const url = `https://my.meteoblue.com/packages/basic-day?lat=${lat}&lon=${lon}&apikey=${apiKey}`;
 
+        function affichage(data)
+         {
+            document.getElementById('display').textContent = JSON.stringify(data, null, 2);
+         }
+        
         // Faire la requête GET à l'API
         fetch(url) 
             .then (res => {return res.json() }) 
-            .then (json =>console.log(json));
+            .then (   json =>console.log(json);
+                      affichage(json);
+                     );
 
     </script>
 </body>
