@@ -59,8 +59,10 @@
             .then(data => {
                 console.log(url);
                 console.log(data);
+                const obj=JSON.PARSE(data);
+                console.log(obj);
                 // Extraire les températures max et min
-                const temperatureMax = data.data_day[0].temperature_max;
+                const temperatureMax = obj.data_day;
                 const temperatureMin = data.data_day[0].temperature_min;
 
                 // Afficher les températures dans le DOM
