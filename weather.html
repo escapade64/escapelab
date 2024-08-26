@@ -57,6 +57,7 @@
                 return response.json(); // Parse le JSON si la requête est réussie
             })
             .then(data => {
+                console.log('données bien récupérées');
                 console.log(data);
                 // Extraire les températures max et min
                 const temperatureMax = data.data_day[0].temperature_max;
