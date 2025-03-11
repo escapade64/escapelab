@@ -52,6 +52,7 @@
     <script>
  
         // lien vers fichier de données marée, en Json Unix Timestamp en ms et hauteur en m
+        // voir fichier Getmarée.xls dans le dossier OneDrive/Escapelab/Brescapade
         mareefile='json/tidedata.json';
  
         // API key Meteo Blue Free Weather API : RjWhm28CVvqGYbkA
@@ -121,8 +122,8 @@
         function afficherHauteur() {
 
            // récuperer l'heure            
-           // const now = new Date(); A remettre en non commentaire pour faire tourner
-            const now= new Date("2025-04-25T13:30:00");
+            const now = new Date(); 
+           // const now= new Date("2025-04-25T13:30:00");
             const heureactuelle = now.getTime();
             
             // Tableau des jours de la semaine en français
