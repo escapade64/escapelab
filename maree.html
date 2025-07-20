@@ -22,20 +22,26 @@
     <br>
     <div id="kerpont"></div>
     <br>
+    Mailles été 2025 <br>
     <br>
-    Bar 42 cm  <br>
+    Bar 42 cm  + ciseaux <br>
+    Mulet 30 cm <br> 
+    Daurade xx cm <br>
     Lieu 30 cm <br>
     Chinchard 15 cm <br>
     Maquereau 20 cm <br>
-    Mulet 30 cm <br>
+   
     <br>
-    Homard 8,7 cm <br>
+    Homard 9 cm + ciseaux (depuis 2025, était 8,7cm avant) <br>
+    Etrilles xx cm<br>
     Couteau 10 cm <br>
     <br>
     <br>
-    <p> <a href="https://www.google.fr/maps/d/edit?mid=1kQ7OCdd0rZCKdTmfhrO0mj_QssQ&ll=48.85211092685611%2C-3.019204510108582&z=16"> Lien vers carte </a></p>
+    <p> <a href="https://www.google.fr/maps/d/edit?mid=1kQ7OCdd0rZCKdTmfhrO0mj_QssQ&ll=48.85211092685611%2C-3.019204510108582&z=16"> Lien vers carte Google Maps</a></p>
     <br>
+    <p> <a href="https://tidemap.fr/?site=cotes-darmor"> Lien vers carte Tide Maps</a></p>
     <br>
+    <div id="database"></div>
     <br>
     <br>
     <br>
@@ -61,13 +67,15 @@
 
         let maree =[];
         let mareeb=[];
-        // marge bateau à ajouter aux données de hauteur
+        // marge de tirant d'eau bateau (en m) à ajouter aux données de hauteur
         let marge =0.5;
         // hauteurs d'eau des différents points d'intérêt
         // Corps mort corderie
         let hcorps=4.1;
         // Kerpont hauteur mesurée 2.6 donné ici sans marge, c'est aussi la cale de l'Arcouest
         let hkerpont=2.6; 
+        // Passage Beniguet pour contourner Kerpont
+        let hbeniguet=4.2; 
         let hbaie =5.4;
         let hsudmaudez=6.0;
         let hnordmaudez=8.0;
@@ -79,6 +87,8 @@
             const contenuDiv = document.getElementById('contenu');
             const corpsDiv = document.getElementById('corps');
             const kerpontDiv = document.getElementById('kerpont');
+            const donneesDiv = document.getElementById('database');
+
 
         function creertableau(data) {
 
