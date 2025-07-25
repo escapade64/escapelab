@@ -9,6 +9,7 @@
     "heure_fin": "19:15",
     "météo": "ensoleillé",
     "commentaire": "Beau temps, perte tuba",
+    "pecheur": "Louis",
     "prises": ["prise001", "prise002"]
   }
 ]

@@ -2,9 +2,11 @@
   {
     "id": "prise001",
     "id_sortie": "sortie001",
+    "pecheur": "Louis",
     "espèce": "Bar",
     "longueur_cm": 60,
     "poids_kg": 2.4,
+    "date": "2025-07-25",
     "heure_capture": "19:00",
     "latitude": 48.850092 ,
     "longitude": -3.022431,
@@ -15,9 +17,11 @@
   {
     "id": "prise002",
     "id_sortie": "sortie001",
+    "pecheur": "Louis",
     "espèce": "Mulet",
     "longueur_cm": 30,
     "poids_kg": 0.6,
+    "date": "2025-07-25",
     "heure_capture": "18:00",
     "latitude": 48.90 ,
     "longitude": -3.022431,
