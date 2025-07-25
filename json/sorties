@@ -1,0 +1,26 @@
+[
+  {
+    "id": "sortie001",
+    "date": "2025-07-20",
+    "lieu": "Lac de Biscarrosse",
+    "latitude": 44.3962,
+    "longitude": -1.1621,
+    "heure_debut": "06:00",
+    "heure_fin": "10:30",
+    "météo": "ensoleillé",
+    "commentaire": "Beau temps, beaucoup d’activité en surface",
+    "prises": ["prise001", "prise002"]
+  },
+  {
+    "id": "sortie002",
+    "date": "2025-07-21",
+    "lieu": "Garonne - Pont de Bordeaux",
+    "latitude": 44.8378,
+    "longitude": -0.5792,
+    "heure_debut": "07:00",
+    "heure_fin": "11:00",
+    "météo": "nuageux",
+    "commentaire": "Quelques touches seulement",
+    "prises": []
+  }
+]

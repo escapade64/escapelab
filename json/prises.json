@@ -1,0 +1,24 @@
+[
+  {
+    "id": "prise001",
+    "id_sortie": "sortie001",
+    "espèce": "Brochet",
+    "longueur_cm": 65,
+    "poids_kg": 2.5,
+    "heure_capture": "07:30",
+    "appât_utilisé": "leurre souple",
+    "remis_a_l_eau": true,
+    "photo": "photos/brochet_2025-07-20.jpg"
+  },
+  {
+    "id": "prise002",
+    "id_sortie": "sortie001",
+    "espèce": "Perche",
+    "longueur_cm": 30,
+    "poids_kg": 0.6,
+    "heure_capture": "08:15",
+    "appât_utilisé": "ver de terre",
+    "remis_a_l_eau": false,
+    "photo": null
+  }
+]

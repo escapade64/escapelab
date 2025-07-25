@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title> Sorties de Pêche</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
+  <style>
+    #map { height: 90vh; }
+    body { font-family: Arial, sans-serif; margin: 0; }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center;">Mes Sorties de Pêche</h1>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    let sorties = [];
+    let prises = [];
+
+    async function chargerDonnees() {
+      sorties = await fetch("sorties.json").then(r => r.json());
+      prises = await fetch("prises.json").then(r => r.json());
+      afficherCarte();
+    }
+
+    function afficherCarte() {
+      const map = L.map("map").setView([44.0, 1.0], 6);
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors"
+      }).addTo(map);
+
+      sorties.forEach(sortie => {
+        const marker = L.marker([sortie.latitude, sortie.longitude]).addTo(map);
+        marker.bindPopup(creerPopup(sortie));
+      });
+    }
+
+    function creerPopup(sortie) {
+      const prisesSortie = prises.filter(p => p.id_sortie === sortie.id);
+      let html = `<strong>${sortie.date} – ${sortie.lieu}</strong><br>`;
+      html += `<em>${sortie.commentaire}</em><br>`;
+      html += `<strong>Prises :</strong><ul>`;
+      if (prisesSortie.length === 0) {
+        html += "<li>Aucune</li>";
+      } else {
+        prisesSortie.forEach(p => {
+          html += `<li>${p.espèce} – ${p.longueur_cm} cm – ${p.poids_kg} kg</li>`;
+        });
+      }
+      html += "</ul>";
+      return html;
+    }
+
+    chargerDonnees();
+  </script>
+</body>
+</html>
