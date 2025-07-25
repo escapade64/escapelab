@@ -23,8 +23,8 @@
     let prises = [];
 
     async function chargerDonnees() {
-      sorties = await fetch("sorties.json").then(r => r.json());
-      prises = await fetch("prises.json").then(r => r.json());
+      sorties = await fetch("json/sorties.json").then(r => r.json());
+      prises = await fetch("json/prises.json").then(r => r.json());
       afficherCarte();
     }
 
