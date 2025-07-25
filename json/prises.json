@@ -6,6 +6,8 @@
     "longueur_cm": 60,
     "poids_kg": 2.4,
     "heure_capture": "19:00",
+    "latitude": 48.850092 ,
+    "longitude": -3.022431,
     "appât_utilisé": "flèche",
     "remis_a_l_eau": false,
     "photo": null
@@ -17,6 +19,8 @@
     "longueur_cm": 30,
     "poids_kg": 0.6,
     "heure_capture": "18:00",
+    "latitude": 48.90 ,
+    "longitude": -3.022431,
     "appât_utilisé": "flèche",
     "remis_a_l_eau": false,
     "photo": null
