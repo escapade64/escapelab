@@ -45,6 +45,9 @@
     Couteau 10 cm <br>
     <br>
     <br>
+    Météo : <a href="https://www.meteoblue.com/fr/meteo/semaine/%c3%8ele-de-br%c3%a9hat_france_3030401"> Meteoblue,  </a><a href="https://marine.meteoconsult.fr/meteo-marine/bulletin-detaille/mouillage-660/previsions-meteo-brehat-aujourdhui"> Marine</a>
+    <br>
+    <br>
     Manuels : <a href="pescadou.htm"> Pescadou,  </a><a href="pdf/manuel_sondeur.pdf"> Sondeur</a>
     <br>
     <br>
@@ -91,8 +94,11 @@
         let hbaie =5.4;
         let hsudmaudez=6.0;
         let hnordmaudez=8.0;
-        let hheaux=7.5;
+        // Port à sec de Paimpol
+        let hportasec=5.6;
 
+        let hheaux=7.5;
+        
         // Récupération des zones d'affichage
             const dateDiv = document.getElementById('date');     
             const horlogeDiv = document.getElementById('horloge'); 
@@ -250,10 +256,12 @@
             contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
             corpsDiv.innerHTML= "Bateau (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge)  ;
             kerpontDiv.innerHTML = "Heures de passages données avec " + marge + "m de marge :" + "<br>";
-            kerpontDiv.innerHTML += "Kerpont et cale Arcouest (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
+            kerpontDiv.innerHTML += "Kerpont (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
+            kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) (" + hnordmaudez + "m) " + passage (hnordmaudez+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche (" + hbaie + "m) " + passage (hbaie+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Sud Maudez (" + hsudmaudez + "m) " + passage (hsudmaudez+marge)+ "<br>";
-            kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) (" + hnordmaudez + "m) " + passage (hnordmaudez+marge)+ "<br>";
+            kerpontDiv.innerHTML += "<br>"+"Cale Arcouest (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
+            kerpontDiv.innerHTML += "<br>"+"Paimpol port à sec (" + hportasec + "m) " + passage(hportasec) + "<br>";
             kerpontDiv.innerHTML += "<br>" + "Cale des Héaux de Bréhat (" + hheaux + "m) immergée " + passage (hheaux)+ "<br>";
         }
 

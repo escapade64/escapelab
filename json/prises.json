@@ -28,5 +28,20 @@
     "appât_utilisé": "flèche",
     "remis_a_l_eau": false,
     "photo": null
+  },
+    {
+    "id": "prise003",
+    "id_sortie": null,
+    "pecheur": "Louis",
+    "espèce": "Mulet",
+    "longueur_cm": 30,
+    "poids_kg": 0.6,
+    "date": "2025-07-27",
+    "heure_capture": "18:00",
+    "latitude": 48.90 ,
+    "longitude": -3.022431,
+    "appât_utilisé": "flèche",
+    "remis_a_l_eau": false,
+    "photo": null
   }
 ]
