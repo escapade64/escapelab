@@ -23,7 +23,7 @@
     <br>
     <div id="kerpont"></div>
     <br>
-    Mailles été 2025 <br>
+    <u>Mailles été 2025</u><br>
     <br>
     Bar 42 cm + cis 2/j/p <br>
     Mulet 30 cm <br> 
@@ -255,8 +255,8 @@
             horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance;
             contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
             corpsDiv.innerHTML= "Bateau (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge)  ;
-            kerpontDiv.innerHTML = "Heures de passages données avec " + marge + "m de marge :" + "<br>";
-            kerpontDiv.innerHTML += "Kerpont (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
+            kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + ">/u><br>";
+            kerpontDiv.innerHTML += "<br>"+"Kerpont (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
             kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) (" + hnordmaudez + "m) " + passage (hnordmaudez+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche (" + hbaie + "m) " + passage (hbaie+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Sud Maudez (" + hsudmaudez + "m) " + passage (hsudmaudez+marge)+ "<br>";
