@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     <h1><img src="images/bar.png"  width=25% height=25% > Keranguilis - Live</h1>
     <div id="date"></div>
     <br>
@@ -34,7 +35,6 @@
     Congre 60 cm <br>
     Orphie 30 cm <br>
     Sole 25 cm + cis <br>
-   
     <br>
     Homard 9 cm + cis (depuis 2025, 8,7cm avant) <br>
     Etrilles 6,5 cm<br>
@@ -258,8 +258,8 @@
 
 
             // Affichage
-            dateDiv.innerHTML=dateComplete + "  " +"<br>" ;
-            dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  ;
+            dateDiv.innerHTML="<u>"+dateComplete + "  " +" - " ;
+            dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  + "</u>";
             horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
             horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance;
             contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
@@ -270,7 +270,7 @@
             kerpontDiv.innerHTML += "<br>"+"Kerpont (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
             kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) (" + hnordmaudez + "m) " + passage (hnordmaudez+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche (" + hbaie + "m) " + passage (hbaie+marge)+ "<br>";
-            kerpontDiv.innerHTML += "Passage Sud Maudez (" + hsudmaudez + "m) " + passage (hsudmaudez+marge)+ "<br>";
+            kerpontDiv.innerHTML += "<br>"+ "Passage Sud Maudez (" + hsudmaudez + "m) " + passage (hsudmaudez+marge)+ "<br>";
             kerpontDiv.innerHTML += "<br>"+"Cale Arcouest (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
             kerpontDiv.innerHTML += "<br>"+"Paimpol port à sec (" + hportasec + "m) " + passage(hportasec) + "<br>";
             kerpontDiv.innerHTML += "<br>" + "Cale des Héaux de Bréhat (" + hheaux + "m) immergée " + passage (hheaux)+ "<br>";
