@@ -85,6 +85,8 @@
         // marge de tirant d'eau bateau (en m) à ajouter aux données de hauteur
         let marge =0.5;
         // hauteurs d'eau des différents points d'intérêt
+        
+        // OUEST Bréhat
         // Corps mort corderie
         let hcorps=4.1;
         // Kerpont hauteur mesurée 2.6 donné ici sans marge, c'est aussi la cale de l'Arcouest
@@ -94,7 +96,14 @@
         let hbaie =5.4;
         let hsudmaudez=6.0;
         let hnordmaudez=8.0;
-        // Port à sec de Paimpol
+        
+        // EST Bréhat
+        let hcrouezen= 8.0;
+        let hcalifornia= 4.8;
+
+
+        
+        // PAIMPOL Port à sec 
         let hportasec=5.6;
 
         let hheaux=7.5;
@@ -255,7 +264,9 @@
             horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance;
             contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
             corpsDiv.innerHTML= "Bateau (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge)  ;
-            kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + ">/u><br>";
+            kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + "</u><br>";
+            kerpontDiv.innerHTML += "<br>"+"Va et vient Crouezen (" + hcrouezen + "m) " + passage(hkerpont) + "<br>";
+            kerpontDiv.innerHTML += "California (" + hcalifornia + "m) " + passage(hcalifornia+marge) + "<br>";
             kerpontDiv.innerHTML += "<br>"+"Kerpont (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
             kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) (" + hnordmaudez + "m) " + passage (hnordmaudez+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche (" + hbaie + "m) " + passage (hbaie+marge)+ "<br>";
