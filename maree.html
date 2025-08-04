@@ -265,8 +265,8 @@
             contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
             corpsDiv.innerHTML= "Bateau (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge)  ;
             kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + "</u><br>";
-            kerpontDiv.innerHTML += "<br>"+"Va et vient Crouezen (" + hcrouezen + "m) " + passage(hkerpont) + "<br>";
-            kerpontDiv.innerHTML += "California (" + hcalifornia + "m) " + passage(hcalifornia+marge) + "<br>";
+            kerpontDiv.innerHTML += "<br>"+"Va et vient Crouezen (" + hcrouezen + "m) " + passage(hcrouezen) + "<br>";
+            kerpontDiv.innerHTML += "California (" + hcalifornia + "m et " + marge + "m de tirant d'eau) " + passage(hcalifornia+marge) + "<br>";
             kerpontDiv.innerHTML += "<br>"+"Kerpont (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
             kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) (" + hnordmaudez + "m) " + passage (hnordmaudez+marge)+ "<br>";
             kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche (" + hbaie + "m) " + passage (hbaie+marge)+ "<br>";
