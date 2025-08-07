@@ -263,8 +263,8 @@
             horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
             horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance;
             contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
-            corpsDiv.innerHTML= "Bateau (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge)  ;
             kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + "</u><br>";
+            kerpontDiv.innerHTML += "<br>"+"Mouillage Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge)  ;
             kerpontDiv.innerHTML += "<br>"+"Va et vient Crouezen (" + hcrouezen + "m) " + passage(hcrouezen) + "<br>";
             kerpontDiv.innerHTML += "California (" + hcalifornia + "m et " + marge + "m de tirant d'eau) " + passage(hcalifornia+marge) + "<br>";
             kerpontDiv.innerHTML += "<br>"+"Kerpont (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";

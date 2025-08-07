@@ -41,10 +41,6 @@
     <br>
     <br>
 
-
-
-
-
     <script>
  
         // lien vers fichier de données marée, en Json Unix Timestamp en ms et hauteur en m
@@ -84,12 +80,12 @@
         let hheaux=7.5;
         
         // Récupération des zones d'affichage
-            const dateDiv = document.getElementById('date');     
-            const horlogeDiv = document.getElementById('horloge'); 
-            const contenuDiv = document.getElementById('contenu');
-            const corpsDiv = document.getElementById('corps');
-            const kerpontDiv = document.getElementById('kerpont');
-            const donneesDiv = document.getElementById('database');
+        const dateDiv = document.getElementById('date');     
+        const horlogeDiv = document.getElementById('horloge'); 
+        const contenuDiv = document.getElementById('contenu');
+        const corpsDiv = document.getElementById('corps');
+        const kerpontDiv = document.getElementById('kerpont');
+        const donneesDiv = document.getElementById('database');
 
 
         function creertableau(data) {
@@ -117,6 +113,7 @@
 
         }
 
+        // Fonction qui permet d'afficher l'heure
         function haff(date)
         {
             let hours = date.getHours();
@@ -127,14 +124,16 @@
             return formattedTime;
         }
 
-        function afficherHauteur() {
+        function afficherHauteur() 
+        {
 
-            // récuperer l'heure            
-            const now = new Date(); 
-            // const now= new Date("2025-04-25T13:30:00");
+            // initialiser une constante pour récupérer un date            
+            
+            // const now = new Date(); 
+            const now= new Date("2025-08-13T00:00:00");
+            
             const heureactuelle = now.getTime();
            
-            
             // Tableau des jours de la semaine en français
             const joursSemaine = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
             
@@ -149,6 +148,7 @@
             let jourMois = now.getDate();
             let mois = moisAnnee[now.getMonth()];
             let annee = now.getFullYear();
+ 
             // Assembler la date complète
             let dateComplete = `${jourSemaine} ${jourMois} ${mois} ${annee}`;
             
@@ -157,11 +157,14 @@
             let ligneAvant = null;
             let ligneApres = null;
 
-            for (let i = 0; i < mareeb.length; i++) {
-                
-                if (mareeb[i][0] < heureactuelle) {
+            for (let i = 0; i <= mareeb.length; i++) 
+            {    
+                if (mareeb[i][0] < heureactuelle) 
+                {
                     ligneAvant = i;
-                } else if (mareeb[i][0] > heureactuelle && ligneApres === null) {
+                } 
+                else if (mareeb[i][0] > heureactuelle && ligneApres === null) 
+                {
                     ligneApres = i;
                     break; // Exit loop as we only need the first occurrence after
                 }
@@ -182,13 +185,12 @@
             let tendancecoef = " en hausse";
             let coeftrend = Math.min(hdep,hfin)-Math.min(mareeb[ligneAvant+2][1],mareeb[ligneApres+2][1]);
             if (coeftrend<0) {tendancecoef =" en baisse"}
-    
-         
+
             let hactuelle = 0;
-            let tcorps =0 ;
+            let tcorps = 0 ;
             
-            let date= new Date( mareeb[ligneApres][0]);
-            let dateprev= new Date( mareeb[ligneAvant][0]);
+            let date= new Date(mareeb[ligneApres][0]);
+            let dateprev= new Date(mareeb[ligneAvant][0]);
 
             // zone de calculs 
 
@@ -197,41 +199,38 @@
             
             function passage (hpassage)
             {
-            let inext = 0;
+                let inext = 0;
 
-            let profil = "à partir de ";
-            let prochain = " ";
+                let profil = "à partir de ";
+                let prochain = " ";
 
-            if (marnage < 0) 
-                {  inext=1          
-                }
+                if (marnage < 0) 
+                    {  inext=1          
+                    }
             
-            if (hpassage<hactuelle) 
-                {   profil="jusqu'à "; 
-                    inext = +!inext;
-                }
+                if (hpassage<hactuelle) 
+                    {   profil="jusqu'à "; 
+                        inext = +!inext;
+                    }
 
-            hdep=mareeb[ligneAvant+inext][1];
-            hfin=mareeb[ligneApres+inext][1];
-            tdep=mareeb[ligneAvant+inext][0];
-            tfin=mareeb[ligneApres+inext][0];
+                hdep=mareeb[ligneAvant+inext][1];
+                hfin=mareeb[ligneApres+inext][1];
+                tdep=mareeb[ligneAvant+inext][0];
+                tfin=mareeb[ligneApres+inext][0];
 
-
-            if (hpassage<Math.max(hdep,hfin) && hpassage>Math.min(hdep,hfin)) 
-                {   tpassage = tdep + (tfin-tdep) / Math.PI * Math.acos((hfin-hpassage)/(hfin-hdep)*2-1);
-                    let tnext= new Date(tpassage);
-                    prochain= profil + haff(tnext);
-                }
+                if (hpassage<Math.max(hdep,hfin) && hpassage>Math.min(hdep,hfin)) 
+                    {   tpassage = tdep + (tfin-tdep) / Math.PI * Math.acos((hfin-hpassage)/(hfin-hdep)*2-1);
+                        let tnext= new Date(tpassage);
+                        prochain= profil + haff(tnext);
+                    }
                 else 
-                {   if (hpassage>hactuelle) 
-                    {prochain=" n'a pas d'eau dans les 6 prochaines heures "} 
-                    else 
-                    {prochain=" n'assèche pas dans les 6 prochaines heures"}
-                }
-                   return prochain; 
+                    {   if (hpassage>hactuelle) 
+                        {prochain=" n'a pas d'eau dans les 6 prochaines heures "} 
+                        else 
+                        {prochain=" n'assèche pas dans les 6 prochaines heures"}
+                    }
+                return prochain; 
             }
-
-
 
             // Affichage
             dateDiv.innerHTML=dateComplete + "  " +"<br>" ;
@@ -252,25 +251,166 @@
             kerpontDiv.innerHTML += "<br>" + "Cale des Héaux de Bréhat (" + hheaux + "m) immergée " + passage (hheaux)+ "<br>";
         }
 
+        function getDateComplete(now){
+            // Tableau des jours de la semaine en français
+            const joursSemaine = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+            
+            // Obtenir le jour de la semaine
+            let jour = joursSemaine[now.getDay()];
+            
+            // Tableau des mois de l'année en français
+            const moisAnnee = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+            
+            // Obtenir le jour de la semaine, le jour du mois, le mois et l'année
+            let jourSemaine = joursSemaine[now.getDay()];
+            let jourMois = now.getDate();
+            let mois = moisAnnee[now.getMonth()];
+            let annee = now.getFullYear();
+ 
+            // Assembler la date complète
+            let dateComplete = `${jourSemaine} ${jourMois} ${mois} ${annee}`;
+
+            return dateComplete;
+        }
+
+        function afficherJournee(now) // quand = date en unix
+        {
+           
+            dateComplete = getDateComplete(now);
+        
+            // Calcul de marée 
+            // Trouver les lignes avant et après l'heure actuelle
+            let ligneAvant = null;
+            let ligneApres = null;
+
+            for (let i = 0; i < mareeb.length; i++) {
+                
+                if (mareeb[i][0] < heureactuelle) {
+                    ligneAvant = i;
+                } else if (mareeb[i][0] > heureactuelle && ligneApres === null) {
+                    ligneApres = i;
+                    break; // Exit loop as we only need the first occurrence after
+                }
+            }
+
+            let hdep=mareeb[ligneAvant][1];
+            let hfin=mareeb[ligneApres][1];
+            let tdep=mareeb[ligneAvant][0];
+            let tfin=mareeb[ligneApres][0];
+
+            let BM = ""
+            let PM = ""
+            
+            // calcul du marnage
+            let marnage = hfin-hdep;
+            let tendance = "montante";
+            if (marnage<0) {tendance ="descendante"}
+            
+            //estimation du coefficient de marée. Ne fonctionne pas très bien car les hauteurs ne sont pas linéaires
+            let coef = Math.round( 120.26-19.812*Math.min(hdep,hfin));
+            let tendancecoef = " en hausse";
+            let coeftrend = Math.min(hdep,hfin)-Math.min(mareeb[ligneAvant+2][1],mareeb[ligneApres+2][1]);
+            if (coeftrend<0) {tendancecoef =" en baisse"}
+    
+         
+            let hactuelle = 0;
+            let tcorps =0 ;
+            
+            let date= new Date(mareeb[ligneApres][0]);
+            let dateprev= new Date(mareeb[ligneAvant][0]);
+
+            // zone de calculs 
+
+            // Calcul de la hauteur 
+            hactuelle = hfin - (Math.cos((heureactuelle-tdep)/(tfin-tdep)*Math.PI)+1) * (marnage)/2.0;
+            
+            function passage (hpassage)
+            {
+                let inext = 0;
+
+                let profil = "à partir de ";
+                let prochain = " ";
+
+                if (marnage < 0) 
+                    {  inext=1          
+                    }
+            
+                if (hpassage<hactuelle) 
+                    {   profil="jusqu'à "; 
+                        inext = +!inext;
+                    }
+
+                hdep=mareeb[ligneAvant+inext][1];
+                hfin=mareeb[ligneApres+inext][1];
+                tdep=mareeb[ligneAvant+inext][0];
+                tfin=mareeb[ligneApres+inext][0];
+
+
+                if (hpassage<Math.max(hdep,hfin) && hpassage>Math.min(hdep,hfin)) 
+                    {   tpassage = tdep + (tfin-tdep) / Math.PI * Math.acos((hfin-hpassage)/(hfin-hdep)*2-1);
+                        let tnext= new Date(tpassage);
+                        prochain= profil + haff(tnext);
+                    }
+                else 
+                    {   if (hpassage>hactuelle) 
+                        {prochain=" n'a pas d'eau dans les 6 prochaines heures "} 
+                        else 
+                        {prochain=" n'assèche pas dans les 6 prochaines heures"}
+                    }
+                return prochain; 
+            }
+
+            // Affichage
+            dateDiv.innerHTML= dateComplete + "  " +"<br>" ;
+            dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  ;
+            horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
+            horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance;
+            contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
+            corpsDiv.innerHTML= "Bateau (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge)  ;
+           
+            kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + "</u><br>";
+            kerpontDiv.innerHTML += "<br>"+"Va et vient Crouezen (" + hcrouezen + "m) " + passage(hcrouezen) + "<br>";
+            kerpontDiv.innerHTML += "California (" + hcalifornia + "m et " + marge + "m de tirant d'eau) " + passage(hcalifornia+marge) + "<br>";
+            kerpontDiv.innerHTML += "<br>"+"Kerpont (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
+            kerpontDiv.innerHTML += "Passage Nord Maudez (pêcherie) (" + hnordmaudez + "m) " + passage (hnordmaudez+marge)+ "<br>";
+            kerpontDiv.innerHTML += "Passage Ste Anne / baie blanche (" + hbaie + "m) " + passage (hbaie+marge)+ "<br>";
+            kerpontDiv.innerHTML += "Passage Sud Maudez (" + hsudmaudez + "m) " + passage (hsudmaudez+marge)+ "<br>";
+            kerpontDiv.innerHTML += "<br>"+"Cale Arcouest (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
+            kerpontDiv.innerHTML += "<br>"+"Paimpol port à sec (" + hportasec + "m) " + passage(hportasec) + "<br>";
+            kerpontDiv.innerHTML += "<br>" + "Cale des Héaux de Bréhat (" + hheaux + "m) immergée " + passage (hheaux)+ "<br>";
+        }
+
+
+        // idée : faire une fonction qui renvoie la data (BM PM Horaire précsie) puis faire un fonction séparée qui affiche
+        // ensuite on affiche dans un carré en fonction de l'horaire que l'on choisit (choix de date et heure)
+        // On peut également faire un carré avec les horaires de la journée 
 
         // Appeler la fonction pour lire et afficher le fichier JSON
        
-        async function chargerDonnees() {
-        try {
-        const response = await fetch(mareefile);
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        maree = await response.json(); // Stocker les données dans la variable globale
+        async function chargerDonnees() 
+        {
+        try 
+            {
+            const response = await fetch(mareefile);
+            if (!response.ok)
+                {
+                throw new Error('Network response was not ok');
+                }
 
-            // permet de peupler le tableau mareeb en format tableau 
-            creertableau(maree);
-            // réalise les calculs et l'affichage
-            afficherHauteur();
+                maree = await response.json(); // Stocker les données dans la variable globale
 
-        } catch (error) {
-        document.write('Erreur de récupération des données:', error);
-        }
+                // permet de peupler le tableau mareeb en format tableau 
+                creertableau(maree);
+                // réalise les calculs et l'affichage
+                //afficherHauteur();
+                const jouraffiche= new Date("2025-08-13T00:00:00");
+                afficheJournee(jouraffiche);
+
+            } 
+            catch (error)
+            {
+            document.write('Erreur de récupération des données:', error);
+            }
         }
             
         chargerDonnees();
