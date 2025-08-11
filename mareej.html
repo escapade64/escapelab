@@ -157,7 +157,7 @@
             // récupère l'heure de la date en UNIX 
             const heureactuelle = now.getTime();
 
-            // fonction qui initialise la variable debut    
+            // fonction qui initialise la variable debut, qui donne la première ligne de mareeb     
             
             let debut=0; 
 
@@ -173,7 +173,7 @@
             // Affiche les marées du jour 
             let aff="";
             
-            for (choix=1; choix < (mareeb.length - debut); choix++)
+            for (choix=1; choix < 10; choix++)
             {
                 let date1= new Date(mareeb[debut+choix][0]);
                 if (date1.getDay() !== now.getDay()) {
@@ -217,10 +217,10 @@
                 // permet de peupler le tableau mareeb en format tableau 
                 creertableau(maree);
                 
-               // const aujourdhui = new Date(); 
-               // aujourdhui.setHours(0, 0, 0, 0);
+               const aujourdhui = new Date(); 
+               aujourdhui.setHours(0, 0, 0, 0);
  
-               // afficheJournee(aujourdhui);
+               afficheJournee(aujourdhui);
 
             } 
             catch (error)
