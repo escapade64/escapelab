@@ -214,10 +214,10 @@
                 // permet de peupler le tableau mareeb en format tableau 
                 creertableau(maree);
                 
-                // réalise les calculs et l'affichage
-                //afficherHauteur();
-                //const jouraffiche= new Date("2025-08-13T00:00:00");
-                //afficheJournee(jouraffiche);
+                const aujourdhui = new Date(); 
+                aujourdhui.setHours(0, 0, 0, 0);
+ 
+                afficheJournee(aujourdhui);
 
             } 
             catch (error)
@@ -228,11 +228,6 @@
             
             chargerDonnees();
 
-
-            const aujourdhui = new Date(); 
-            aujourdhui.setHours(0, 0, 0, 0);
- 
-            afficheJournee(aujourdhui);
             
         
     </script>
