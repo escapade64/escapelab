@@ -131,6 +131,7 @@
 
             return dateComplete;
         }
+
         // Fonction qui permet d'afficher l'heure
         function haff(date)
         {
@@ -157,7 +158,8 @@
             const heureactuelle = now.getTime();
 
             let debut=0;
-
+             
+            // fonction qui initialise la variable debut
             for (let i = 0; i < mareeb.length; i++) 
             {    
                 if (mareeb[i][0] <= heureactuelle) {
@@ -170,7 +172,7 @@
             // Affiche les marées du jour 
             let aff="";
             
-            for (choix=1; choix < (mareeb.length - choix); choix++)
+            for (choix=1; choix < (mareeb.length - debut); choix++)
             {
                 let date1= new Date(mareeb[debut+choix][0]);
                 if (date1.getDay() !== now.getDay()) {
