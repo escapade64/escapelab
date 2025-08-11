@@ -265,9 +265,11 @@
             
              // chargerDonnees();
 
-            let jouraffiche= new Date("2025-08-09T00:00:00");
 
-            afficheJournee(jouraffiche);
+            const aujourdhui = new Date(); 
+            aujourdhui.setHours(0, 0, 0, 0);
+ 
+            afficheJournee(aujourdhui);
             
         
     </script>
