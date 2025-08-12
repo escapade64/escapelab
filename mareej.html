@@ -175,7 +175,10 @@
 
             let reste=mareeb.length - debut;
             
-            for (choix=1; choix < reste; choix++)
+            dateDiv.innerHTML += "<u>"+ reste + "</u><br>";
+
+
+            for (choix=1; choix < 12; choix++)
             {
                 let date1= new Date(mareeb[debut+choix][0]);
                 if (date1.getDay() !== now.getDay()) {
