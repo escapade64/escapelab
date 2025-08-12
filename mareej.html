@@ -172,8 +172,10 @@
 
             // Affiche les marées du jour 
             let aff="";
+
+            let reste=mareeb.length - debut;
             
-            for (choix=1; choix < 10; choix++)
+            for (choix=1; choix < reste; choix++)
             {
                 let date1= new Date(mareeb[debut+choix][0]);
                 if (date1.getDay() !== now.getDay()) {
