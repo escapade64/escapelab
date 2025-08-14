@@ -224,7 +224,7 @@
             hactuelle = hfin - (Math.cos((heureactuelle-tdep)/(tfin-tdep)*Math.PI)+1) * (marnage)/2.0;
             hnext = hfin - (Math.cos(((heureactuelle + 20 * 60 * 1000)-tdep)/(tfin-tdep)*Math.PI)+1) * (marnage)/2.0;
             //calcul du pourcentage de courant en fonction d'un marnage max de 11m
-            courant = (hactuelle - hnext)/20/11*360*100;
+            courant = (hactuelle - hnext) / ((11/360)*20) * 100;
 
             function passage (hpassage)
             {
@@ -268,8 +268,8 @@
             dateDiv.innerHTML="<u>"+dateComplete + "  " +" - " ;
             dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  + "</u>";
             horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
-            horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance;
-            horlogeDiv.innerHTML+= "                          dans 20min : " + hnext.toFixed(2) +"m  " + courant.toFixed(2)+ "%";
+            horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance + "<br>";
+            horlogeDiv.innerHTML+= "                          dans 20min : " + (hnext-hactuelle).toFixed(2) +"m  " + courant.toFixed(0)+ "%";
             contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
             kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + "</u><br>";
             kerpontDiv.innerHTML += "<br>"+"Mouillage Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge) +"<br>" ;
