@@ -212,6 +212,9 @@
     
          
             let hactuelle = 0;
+            let hnext=0;
+            let courant=0;
+            
             let tcorps =0 ;
             
             let date= new Date( mareeb[ligneApres][0]);
@@ -219,7 +222,9 @@
             // zone de calculs 
 
             hactuelle = hfin - (Math.cos((heureactuelle-tdep)/(tfin-tdep)*Math.PI)+1) * (marnage)/2.0;
-            
+            hnext = hfin - (Math.cos(((heureactuelle + 20 * 60 * 1000)-tdep)/(tfin-tdep)*Math.PI)+1) * (marnage)/2.0;
+            //calcul du pourcentage de courant en fonction d'un marnage max de 11m
+            courant = (hactuelle - hnext)/20/11*360*100;
 
             function passage (hpassage)
             {
@@ -264,6 +269,7 @@
             dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  + "</u>";
             horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
             horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance;
+            horlogeDiv.innerHTML+= "                          dans 20min : " + hnext.toFixed(2) +"m  " + courant.toFixed(2)+ "%";
             contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
             kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + "</u><br>";
             kerpontDiv.innerHTML += "<br>"+"Mouillage Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge) +"<br>" ;
