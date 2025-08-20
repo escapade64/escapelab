@@ -215,6 +215,12 @@
          }
          while (inext<5);
 
+         if (profil="jusqu'à ")
+         {
+            profil="n'assèche pas aujourd'hui";
+         }
+
+
         }
         else 
         {
@@ -230,13 +236,12 @@
                 inext=inext+1;
             }
          } while (inext<5);
-
+         if (profil="à partir de ")
+         {
+            profil="n'a pas d'eau aujourd'hui";
+         }
         }
 
-        for (inext=0;inext<5 ;inext++)
-        {
-            profil=profil+sequence[inext]+ " et de ";
-        }
         
         return profil; 
 
