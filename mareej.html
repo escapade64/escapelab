@@ -201,7 +201,7 @@
         if (hpassage<hdep)
         {
             profil="";
-            prochain ="jusqu'à "
+            prochain =" jusqu'à "
            
            do 
            {
@@ -212,13 +212,13 @@
             else
             {
                 profil= profil + prochain + sequence[inext];
-                if (prochain =="jusqu'à ")
+                if (prochain ==" jusqu'à ")
                 {
                     prochain =" et de ";
                 }
                 else 
                 {
-                   prochain ="jusqu'à " ;
+                   prochain =" jusqu'à " ;
                 }
                 inext=inext+1;
             }
@@ -226,7 +226,7 @@
             while (inext<5);
 
             // si pas de données dans séquence 
-            if (profil=="jusqu'à ")
+            if (profil==" jusqu'à ")
             {
                 profil="n'assèche pas aujourd'hui";
             }
@@ -234,8 +234,8 @@
         }
         else 
         {
-            profil = "à partir de ";
-
+            profil="";
+            prochain =" à partir de "
             do 
             {
                 if (sequence[inext]=="-")
@@ -244,7 +244,15 @@
             }
             else
             {
-                profil = profil + sequence[inext] + " et jusqu'à ";
+              profil= profil + prochain + sequence[inext];
+              if (prochain ==" jusqu'à ")
+                {
+                    prochain =" et de ";
+                }
+                else 
+                {
+                   prochain =" jusqu'à " ;
+                }
                 inext=inext+1;
             }
             }
@@ -296,7 +304,7 @@
              // afficher la date
             dateComplete = getDateComplete(now);
             dateDiv.innerHTML += "<u>"+dateComplete + "</u><br>" ;
-            dateDiv.innerHTML += "<br>"+"Mouillage Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge,debut+1) +"<br>" ;
+            dateDiv.innerHTML += "<br>Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge,debut+1) +"<br><br>" ;
         
                 
             for (choix=1; choix < (reste -5); choix++)
@@ -308,7 +316,7 @@
                     dateDiv.innerHTML += "<u>"+ dateComplete + "</u><br>";
                     // il faut insérer ici le calcul du bateau pour le jour donneé, à partir de l'index mareeb : debut+choix
                     // qui représente la première marée du jour
-                    dateDiv.innerHTML += "<br>"+"Mouillage Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge,debut+choix) +"<br>" ;
+                    dateDiv.innerHTML += "<br>Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge,debut+choix) +"<br><br>" ;
                     now.setDate(now.getDate() + 1)
                 }
         
