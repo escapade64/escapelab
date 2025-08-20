@@ -161,6 +161,7 @@
         let inext = 0;
         let profil = "à partir de ";
         let prochain = " ";
+        let sequence =[];
 
         // commençons par la première marée du jour 
             hdep=mareeb[index+inext][1];
@@ -188,17 +189,23 @@
             if (hpassage<Math.max(hdep,hfin) && hpassage>Math.min(hdep,hfin)) 
                 {   tpassage = tdep + (tfin-tdep) / Math.PI * Math.acos((hfin-hpassage)/(hfin-hdep)*2-1);
                     let tnext= new Date(tpassage);
-                    profil = profil + haff(tnext);
+                    sequence[inext] = haff(tnext);
                 }
                 else 
                 {   if (hpassage>hdep) 
-                    {profil= profil + " n'a pas d'eau dans les 6 prochaines heures "} 
+                    {sequence[inext]= " n'a pas d'eau "} 
                     else 
-                    {profil= profil + " n'assèche pas dans les 6 prochaines heures"}
+                    {sequence[inext]= " n'assèche pas "}
                 }
         
         }   
 
+
+        for (inext=0;inext<5 ;inext++)
+        {
+            profil=profil+sequence[inext];
+        }
+        
         return profil; 
 
         }
