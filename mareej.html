@@ -200,7 +200,8 @@
         // si le point de passage est sous l'eau 
         if (hpassage<hdep)
         {
-            profil="jusqu'à ";
+            profil="";
+            prochain ="jusqu'à "
            
            do 
            {
@@ -210,7 +211,15 @@
             }
             else
             {
-                profil=profil + sequence[inext] + " et de ";
+                profil= profil + prochain + sequence[inext];
+                if (prochain =="jusqu'à ")
+                {
+                    prochain =" et de ";
+                }
+                else 
+                {
+                   prochain ="jusqu'à " ;
+                }
                 inext=inext+1;
             }
             }
