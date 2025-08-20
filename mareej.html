@@ -259,10 +259,7 @@
         function afficheJournee(now) // quand = date en unix
         {
            
-            // afficher la date
-            dateComplete = getDateComplete(now);
-            dateDiv.innerHTML += "<u>"+dateComplete + "</u><br>" ;
-     
+
             // Le tableau ligne va prendre les marées du jour (5 au max)
             // let ligne = [0,0,0,0,0];  
 
@@ -287,7 +284,13 @@
             let pescadou="";
 
             let reste=mareeb.length - debut;
-            
+
+             // afficher la date
+            dateComplete = getDateComplete(now);
+            dateDiv.innerHTML += "<u>"+dateComplete + "</u><br>" ;
+            dateDiv.innerHTML += "<br>"+"Mouillage Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge,debut+1) +"<br>" ;
+        
+                
             for (choix=1; choix < (reste -5); choix++)
             {
                 let date1= new Date(mareeb[debut+choix][0]);
