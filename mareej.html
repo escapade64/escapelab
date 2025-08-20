@@ -48,6 +48,11 @@
 
         let mareeb=[];
 
+        let hdep=0.0;
+        let hfin=0.0;
+        let tdep=0;
+        let tfin=0;
+        let marnage=0.0;
 
         // marge de tirant d'eau bateau (en m) à ajouter aux données de hauteur
         let marge =0.5;
@@ -143,6 +148,56 @@
             return formattedTime;
         }
 
+        // Fonction pour calculer les heures d'assechage
+        function passage(hpassage,index)
+        {
+        // l'objectif de la fonction est de retourner les heures d'assechage du jour 
+        // qui peuvent être : "n'assèche pas aujourdhui", "n'aura pas d'eau aujourd'hui"
+        // et toutes les variations avec une ou deux séquence d'asséchage
+        // Les marées du jour sont index, index + 1, index +2, index +3, index + 4 (option)
+        
+
+
+        let inext = 0;
+        let profil = "à partir de ";
+        let prochain = " ";
+
+        // commençons par la première marée du jour 
+   
+      
+
+        hdep=mareeb[index+inext][1];
+        hfin=mareeb[index+1+inext][1];
+        tdep=mareeb[index+inext][0];
+        tfin=mareeb[index+1+inext][0];
+        marnage=hfin-hdep;
+
+        // si le point de passage est sous l'eau 
+        if (hpassage<hdep)
+            {
+            profil="jusqu'à";
+            }
+
+
+
+
+        if (hpassage<Math.max(hdep,hfin) && hpassage>Math.min(hdep,hfin)) 
+             {   tpassage = tdep + (tfin-tdep) / Math.PI * Math.acos((hfin-hpassage)/(hfin-hdep)*2-1);
+                 let tnext= new Date(tpassage);
+                 prochain= profil + haff(tnext);
+             }
+             else 
+            {   if (hpassage>hdep) 
+                {prochain=" n'a pas d'eau dans les 6 prochaines heures "} 
+                else 
+                {prochain=" n'assèche pas dans les 6 prochaines heures"}
+            }
+            
+        return prochain; 
+
+        }
+
+
      
         function afficheJournee(now) // quand = date en unix
         {
@@ -172,15 +227,20 @@
 
             // Affiche les marées du jour 
             let aff="";
+            let pescadou="";
 
             let reste=mareeb.length - debut;
             
             for (choix=1; choix < (reste -1); choix++)
             {
                 let date1= new Date(mareeb[debut+choix][0]);
-                if (date1.getDay() !== now.getDay()) {
+                if (date1.getDay() !== now.getDay()) 
+                {
                     dateComplete = getDateComplete(date1);
                     dateDiv.innerHTML += "<u>"+ dateComplete + "</u><br>";
+                    // il faut insérer ici le calcul du bateau pour le jour donneé, à partir de l'index mareeb : debut+choix
+                    // qui représente la première marée du jour
+                    dateDiv.innerHTML += "<br>"+"Mouillage Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge,debut+choix) +"<br>" ;
                     now.setDate(now.getDate() + 1)
                 }
         
@@ -193,6 +253,9 @@
                     aff="Pleine ";
                 }
                 dateDiv.innerHTML += aff + "mer...: " + haff(date1) + "    hauteur : " + mareeb[debut+choix][1] + "m" + "<br><br>";
+
+
+
             }
            
         }
