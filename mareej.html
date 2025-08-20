@@ -181,9 +181,9 @@
                 }
                 else 
                 {   if (hpassage>hdep) 
-                    {sequence[inext]= ""} 
+                    {sequence[inext]= "-"} 
                     else 
-                    {sequence[inext]= ""}
+                    {sequence[inext]= "-"}
                 }
         
         }   
@@ -196,6 +196,7 @@
         tfin=mareeb[index+1][0];
         marnage=hfin-hdep;
         inext=0;
+        
         // si le point de passage est sous l'eau 
         if (hpassage<hdep)
         {
@@ -203,7 +204,7 @@
            
            do 
            {
-            if (sequence[inext]=="")
+            if (sequence[inext]=="-")
             {
                 inext=inext+1;
             }
@@ -212,34 +213,40 @@
                 profil=profil + sequence[inext] + " et de ";
                 inext=inext+1;
             }
-         }
-         while (inext<5);
+            }
+            while (inext<5);
 
-         if (profil="jusqu'à ")
-         {
-            profil="n'assèche pas aujourd'hui";
-         }
+            // si pas de données dans séquence 
+            if (profil="jusqu'à ")
+            {
+                profil="n'assèche pas aujourd'hui";
+            }
 
 
         }
         else 
         {
             profil = "à partir de ";
-            do {
-                if (sequence[inext]=="")
+
+            do 
+            {
+                if (sequence[inext]=="-")
             {
                 inext=inext+1;
             }
             else
             {
-                profil=profil + sequence[inext] + " et jusqu'à ";
+                profil = profil + sequence[inext] + " et jusqu'à ";
                 inext=inext+1;
             }
-         } while (inext<5);
-         if (profil="à partir de ")
-         {
+            }
+            while (inext<5);
+          
+            // si pas de données dans séquence 
+            if (profil="à partir de ")
+            {
             profil="n'a pas d'eau aujourd'hui";
-         }
+            }
         }
 
         
