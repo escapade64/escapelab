@@ -159,22 +159,10 @@
 
 
         let inext = 0;
-        let profil = "à partir de ";
+
         let prochain = " ";
         let sequence =[];
 
-        // commençons par la première marée du jour 
-            hdep=mareeb[index+inext][1];
-            hfin=mareeb[index+1+inext][1];
-            tdep=mareeb[index+inext][0];
-            tfin=mareeb[index+1+inext][0];
-            marnage=hfin-hdep;
-
-            // si le point de passage est sous l'eau 
-            if (hpassage<hdep)
-                {
-                profil="jusqu'à ";
-                }
 
 
         for (inext=0;inext<5 ;inext++)
@@ -193,17 +181,61 @@
                 }
                 else 
                 {   if (hpassage>hdep) 
-                    {sequence[inext]= " n'a pas d'eau "} 
+                    {sequence[inext]= ""} 
                     else 
-                    {sequence[inext]= " n'assèche pas "}
+                    {sequence[inext]= ""}
                 }
         
         }   
 
+        // commençons par la première marée du jour 
+        let profil = "";  
+        hdep=mareeb[index][1];
+        hfin=mareeb[index+1][1];
+        tdep=mareeb[index][0];
+        tfin=mareeb[index+1][0];
+        marnage=hfin-hdep;
+        inext=0;
+        // si le point de passage est sous l'eau 
+        if (hpassage<hdep)
+        {
+            profil="jusqu'à ";
+           
+           do 
+           {
+            if (sequence[inext]=="")
+            {
+                inext=inext+1;
+            }
+            else
+            {
+                profil=profil + sequence[inext] + " et de ";
+                inext=inext+1;
+            }
+         }
+         while (inext<5);
+
+        }
+        else 
+        {
+            profil = "à partir de ";
+            do {
+                if (sequence[inext]=="")
+            {
+                inext=inext+1;
+            }
+            else
+            {
+                profil=profil + sequence[inext] + " et jusqu'à ";
+                inext=inext+1;
+            }
+         } while (inext<5);
+
+        }
 
         for (inext=0;inext<5 ;inext++)
         {
-            profil=profil+sequence[inext];
+            profil=profil+sequence[inext]+ " et de ";
         }
         
         return profil; 
