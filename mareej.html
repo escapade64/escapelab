@@ -159,10 +159,12 @@
 
 
         let inext = 0;
-
         let prochain = " ";
         let sequence =[];
+        let inextmax=2;
 
+        let today = new Date(mareeb[index][0]); 
+        let jour=today.getDay();
 
 
         for (inext=0;inext<5 ;inext++)
@@ -174,10 +176,18 @@
             tfin=mareeb[index+1+inext][0];
             marnage=hfin-hdep;
 
+            let encours= new Date(tfin)
+
+
+
             if (hpassage<Math.max(hdep,hfin) && hpassage>Math.min(hdep,hfin)) 
                 {   tpassage = tdep + (tfin-tdep) / Math.PI * Math.acos((hfin-hpassage)/(hfin-hdep)*2-1);
                     let tnext= new Date(tpassage);
                     sequence[inext] = haff(tnext);
+                    if (tnext.getday()!=jour)
+                  {
+                   sequence[inext]= "-"; 
+                  }
                 }
                 else 
                 {   if (hpassage>hdep) 
