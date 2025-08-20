@@ -163,37 +163,43 @@
         let prochain = " ";
 
         // commençons par la première marée du jour 
-   
-      
+            hdep=mareeb[index+inext][1];
+            hfin=mareeb[index+1+inext][1];
+            tdep=mareeb[index+inext][0];
+            tfin=mareeb[index+1+inext][0];
+            marnage=hfin-hdep;
 
-        hdep=mareeb[index+inext][1];
-        hfin=mareeb[index+1+inext][1];
-        tdep=mareeb[index+inext][0];
-        tfin=mareeb[index+1+inext][0];
-        marnage=hfin-hdep;
-
-        // si le point de passage est sous l'eau 
-        if (hpassage<hdep)
-            {
-            profil="jusqu'à";
-            }
+            // si le point de passage est sous l'eau 
+            if (hpassage<hdep)
+                {
+                profil="jusqu'à ";
+                }
 
 
+        for (inext=0;inext<5 ;inext++)
+        {
 
+            hdep=mareeb[index+inext][1];
+            hfin=mareeb[index+1+inext][1];
+            tdep=mareeb[index+inext][0];
+            tfin=mareeb[index+1+inext][0];
+            marnage=hfin-hdep;
 
-        if (hpassage<Math.max(hdep,hfin) && hpassage>Math.min(hdep,hfin)) 
-             {   tpassage = tdep + (tfin-tdep) / Math.PI * Math.acos((hfin-hpassage)/(hfin-hdep)*2-1);
-                 let tnext= new Date(tpassage);
-                 prochain= profil + haff(tnext);
-             }
-             else 
-            {   if (hpassage>hdep) 
-                {prochain=" n'a pas d'eau dans les 6 prochaines heures "} 
+            if (hpassage<Math.max(hdep,hfin) && hpassage>Math.min(hdep,hfin)) 
+                {   tpassage = tdep + (tfin-tdep) / Math.PI * Math.acos((hfin-hpassage)/(hfin-hdep)*2-1);
+                    let tnext= new Date(tpassage);
+                    profil = profil + haff(tnext);
+                }
                 else 
-                {prochain=" n'assèche pas dans les 6 prochaines heures"}
-            }
-            
-        return prochain; 
+                {   if (hpassage>hdep) 
+                    {profil= profil + " n'a pas d'eau dans les 6 prochaines heures "} 
+                    else 
+                    {profil= profil + " n'assèche pas dans les 6 prochaines heures"}
+                }
+        
+        }   
+
+        return profil; 
 
         }
 
