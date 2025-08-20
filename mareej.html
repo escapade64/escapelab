@@ -184,7 +184,7 @@
                 {   tpassage = tdep + (tfin-tdep) / Math.PI * Math.acos((hfin-hpassage)/(hfin-hdep)*2-1);
                     let tnext= new Date(tpassage);
                     sequence[inext] = haff(tnext);
-                    if (tnext.getday()!=jour)
+                    if (tnext.getDay()!=jour)
                   {
                    sequence[inext]= "-"; 
                   }
