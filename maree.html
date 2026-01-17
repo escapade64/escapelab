@@ -192,7 +192,7 @@
 
             if (mareeb[maree.length-1][0]<heureactuelle)
                  {
-                    dateDiv.innerHTML+="Données de marée non disponibles"</u>";
+                    contenuDiv.innerHTML+="<u> Données de marée non disponibles </u>";
                 }
             else{
 
@@ -282,7 +282,7 @@
 
 
             // Affichage
-                       dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  + "</u>";
+            dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  + "</u>";
             horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
             horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance + "<br>";
             horlogeDiv.innerHTML+= " --> variation dans les 20 prochaines minutes : " + (hnext-hactuelle).toFixed(2) +"m  courant : " + courant.toFixed(0)+ "%";
