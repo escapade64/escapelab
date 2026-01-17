@@ -81,7 +81,6 @@
         // voir fichier Getmarée.xls dans le dossier OneDrive/Escapelab/Brescapade
         mareefile='json/tidedata.json';
  
-
         // API key Meteo Blue Free Weather API : RjWhm28CVvqGYbkA
 
         let maree =[];
@@ -106,7 +105,6 @@
         let htest=0;
         let hcalifornia= 4.8;
 
-        
         // PAIMPOL Port à sec 
         let hportasec=5.6;
 
@@ -145,7 +143,7 @@
             });
 
             // Ajouter le tableau à la div contenu
-            contenuDiv.appendChild(table);
+            //contenuDiv.appendChild(table);
             
             //contenuDiv.textContent=mareeb[0][1];
 
@@ -192,8 +190,11 @@
             // Pour cela il faut que la dernière date du tableau soit > à la date actuelle
             // et que la date actuelle soit encadrée par une vraie marée (de 5 à 7h)
 
-            if (mareeb[maree.length-1][0]>heureactuelle)
-            {
+            if (mareeb[maree.length-1][0]<heureactuelle)
+                 {
+                    dateDiv.innerHTML+="Données de marée non disponibles"</u>";
+                }
+            else{
 
             // Calcul de marée 
             // Trouver les lignes avant et après l'heure actuelle
