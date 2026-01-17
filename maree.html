@@ -68,9 +68,10 @@
     <img src="images/classique.jpg" alt="Noeud de peche classique">
     <br>
     <img src="images/tresse.jpg" alt="Noeud de liaison tresse fluoro">
-    
+    <br>
     <u>Règles du tarot </u><br>
     <br>
+    
    
     
 
@@ -104,7 +105,6 @@
         let hcrouezen= 8.0;
         let htest=0;
         let hcalifornia= 4.8;
-
 
         
         // PAIMPOL Port à sec 
@@ -169,6 +169,7 @@
            // const now= new Date("2025-04-25T13:30:00");
             const heureactuelle = now.getTime();
             
+            
             // Tableau des jours de la semaine en français
             const joursSemaine = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
             // Obtenir le jour de la semaine
@@ -183,6 +184,17 @@
             // Assembler la date complète
             let dateComplete = `${jourSemaine} ${jourMois} ${mois} ${annee}`;
             
+             // Affichage de la date
+            dateDiv.innerHTML="<u>"+dateComplete + "  " +" - " ;
+
+
+            // la suite ne peut être réalisée que si les données sont disponibles 
+            // Pour cela il faut que la dernière date du tableau soit > à la date actuelle
+            // et que la date actuelle soit encadrée par une vraie marée (de 5 à 7h)
+
+            if (mareeb[maree.length-1][0]>heureactuelle)
+            {
+
             // Calcul de marée 
             // Trouver les lignes avant et après l'heure actuelle
             let ligneAvant = null;
@@ -269,8 +281,7 @@
 
 
             // Affichage
-            dateDiv.innerHTML="<u>"+dateComplete + "  " +" - " ;
-            dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  + "</u>";
+                       dateDiv.innerHTML+="Coefficient : "+ coef + tendancecoef  + "</u>";
             horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
             horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance + "<br>";
             horlogeDiv.innerHTML+= " --> variation dans les 20 prochaines minutes : " + (hnext-hactuelle).toFixed(2) +"m  courant : " + courant.toFixed(0)+ "%";
@@ -286,6 +297,9 @@
             kerpontDiv.innerHTML += "<br>"+"Cale Arcouest (" + hkerpont + "m) " + passage(hkerpont+marge) + "<br>";
             kerpontDiv.innerHTML += "<br>"+"Paimpol port à sec (" + hportasec + "m) " + passage(hportasec) + "<br>";
             kerpontDiv.innerHTML += "<br>" + "Cale des Héaux de Bréhat (" + hheaux + "m) immergée " + passage (hheaux)+ "<br>";
+        
+            }
+        
         }
 
 
