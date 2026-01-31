@@ -160,6 +160,9 @@
             return formattedTime;
         }
 
+
+
+
         function afficherHauteur() {
 
            // récuperer l'heure            
@@ -193,7 +196,7 @@
 
             if (mareeb[maree.length-1][0]<heureactuelle)
                  {
-                    contenuDiv.innerHTML+="Données de marée non disponibles (hors tableau). Rendez-vous aux prochaines vacances !";
+                    contenuDiv.innerHTML+="Données de marée non disponibles pour aujourd'hui. Rendez-vous aux prochaines vacances !";
                 }
             else
                 {
@@ -222,7 +225,21 @@
               
                 if ((tfin-tdep)>32400000)
                 {
-                     contenuDiv.innerHTML+="Données de marée non disponibles (entre deux périodes). Rendez-vous aux prochaines vacances !";
+                     contenuDiv.innerHTML+="Données de marée non disponibles pour aujourd'hui.";
+                    
+
+                     const proch = new Date(tfin);
+                     // Jour de la prochaine marée enregistrée
+                    let jour = joursSemaine[proch.getDay()];
+                    // Obtenir le jour de la semaine, le jour du mois, le mois et l'année
+                    let jourSemaine = joursSemaine[proch.getDay()];
+                    let jourMois = proch.getDate();
+                    let mois = moisAnnee[proch.getMonth()];
+                    let annee = proch.getFullYear();
+                    // Assembler la date complète
+                    let dateComplete = `${jourSemaine} ${jourMois} ${mois} ${annee}`;
+
+                     contenuDiv.innerHTML+="Rendez-vous le "+ dateComplete;
                 }
                 else
                 {
