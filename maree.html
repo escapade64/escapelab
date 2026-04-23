@@ -26,25 +26,29 @@
     <br>
     <u>Mailles saison 2026</u><br>
     <br>
-    Bar 42 cm + ciseaux 3/j/p <br>
-    Lieu jaune 42 cm + ciseaux 2/j/p <br> 
+    Bar 42 cm + ciseaux 3/j/p à partir du 1er avril uniquement<br>
+    Lieu jaune 42 cm + ciseaux 2/j/p à partir du 1er mai uniquement<br> 
     Dorade royale 23 cm + ciseaux <br>
     Maquereau 20 cm + ciseaux + 10/j/p <br>
+    Sole 25 cm + ciseaux <br> 
     Mulet 30 cm <br>   
     Congre 60 cm <br>
     Orphie 30 cm <br>
-    Sole 25 cm + ciseaux <br>
     Chinchard 15 cm <br>   
     <br>
     Homard 9 cm + ciseaux (depuis 2025, 8,7cm avant) <br>
     Langouste 11 cm + ciseaux <br> 
     Etrilles 6,5 cm<br>
     Araignée 12 cm <br>
+    Tourteau 15 cm <br> 
     Bouquet 5 cm <br>
     Ormeau 9cm 20max jusqu'au 14 juin <br>
     Coquille Saint Jacques 11 cm 30max jusqu'au 14 mai <br>
     Amande de mer 100max jusqu'au 30 avril <br>
-    Tourteau 15 cm <br>
+    Praire 4,3 cm 100max <br>
+    Palourde rose 4cm 150max <br>
+    Palourde grise 4cm 150max <br>
+    Coque 2,7cm<br>
     Couteau 10 cm <br>
     <br>
     <br>
@@ -71,6 +75,7 @@
     <img src="images/classique.jpg" alt="Noeud de peche classique">
     <br>
     <img src="images/tresse.jpg" alt="Noeud de liaison tresse fluoro">
+    <br>
     <br>
     <u>Règles du tarot </u><br>
     <br>
@@ -254,6 +259,7 @@
                 if (marnage<0) {tendance ="descendante"}
                 
                 //estimation du coefficient de marée. Ne fonctionne pas très bien car les hauteurs ne sont pas linéaires
+                // formule acuelle : coef = 120.26 - 19.812 * hauteur mini de la marée 
                 let coef = Math.round( 120.26-19.812*Math.min(hdep,hfin));
                 let tendancecoef = " en hausse";
                 let coeftrend = Math.min(hdep,hfin)-Math.min(mareeb[ligneAvant+2][1],mareeb[ligneApres+2][1]);
@@ -268,14 +274,22 @@
                 
                 let date= new Date( mareeb[ligneApres][0]);
                 let dateprev= new Date( mareeb[ligneAvant][0]);
+                let datesame= new Date( mareeb[ligneApres][0]);
+                
                 // zone de calculs 
 
                 hactuelle = hfin - (Math.cos((heureactuelle-tdep)/(tfin-tdep)*Math.PI)+1) * (marnage)/2.0;
+
                 //Calcul de la hauteur dans 20 min 
                 hnext = hfin - (Math.cos(((heureactuelle + 20 * 60 * 1000)-tdep)/(tfin-tdep)*Math.PI)+1) * (marnage)/2.0;
+
                 //calcul du pourcentage de courant en fonction d'un marnage max de 11m
                 // et de la dérivée max dans ce cas
                 courant = (hnext - hactuelle) / ((11/360)*20*Math.PI/2) * 100;
+                
+                //calcul de la prochaine heure qui verra Hactuelle
+                // essai avec fonction passage et mini delta de hauteur
+
 
                 function passage (hpassage)
                 {
@@ -320,6 +334,8 @@
                 horlogeDiv.innerHTML=  "Dernière marée...: " + haff(dateprev) + "    hauteur : " + mareeb[ligneAvant][1] + "m" + "<br><br>";
                 horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance + "<br>";
                 horlogeDiv.innerHTML+= " --> variation dans les 20 prochaines minutes : " + (hnext-hactuelle).toFixed(2) +"m  courant : " + courant.toFixed(0)+ "%";
+                //astuce pour prochaine heure : ajouter le produit du signe du marnage. SI pos mettre un - 
+                horlogeDiv.innerHTML+= " --> il y aura la même hauteur d'eau à : " + passage(hactuelle+0.01);
                 contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
                 kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + "</u><br>";
                 kerpontDiv.innerHTML += "<br>"+"Mouillage Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge) +"<br>" ;
