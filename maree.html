@@ -34,7 +34,7 @@
     <br>
       Manuels bateau : <a href="pescadou.htm"> Pescadou,  </a><a href="pdf/manuel_sondeur.pdf"> Sondeur</a>
     <br>
-    CRAS : 8h30 / 18h sauf le dimanche Tel : 02 96 20 44 88 <br>
+    CRAS : 8h30 / 18h sauf le dimanche Tel : 02 96 20 44 88 puis taper 3<br>
     <br>
     <br>
     DEPART VERS BREHAT<br>
@@ -341,7 +341,7 @@
                 horlogeDiv.innerHTML+= "En ce moment.....: " + haff(now)      + "    hauteur : " + hactuelle.toFixed(2) +"m  "+ tendance + "<br>";
                 horlogeDiv.innerHTML+= " --> variation dans les 20 prochaines minutes : " + (hnext-hactuelle).toFixed(2) +"m  courant : " + courant.toFixed(0)+ "%";
                 //astuce pour prochaine heure : ajouter le produit du signe du marnage. SI pos mettre un - 
-                horlogeDiv.innerHTML+= " --> il y aura la même hauteur d'eau à : " + passage(hactuelle+0.01);
+                // en test uniquement : horlogeDiv.innerHTML+= " --> il y aura la même hauteur d'eau à : " + passage(hactuelle+0.01);
                 contenuDiv.innerHTML=  "Prochaine marée..: " + haff(date)     + "    hauteur : " + mareeb[ligneApres][1] + "m" ;
                 kerpontDiv.innerHTML = "<u>Heures de passages données avec " + marge + "m de marge :" + "</u><br>";
                 kerpontDiv.innerHTML += "<br>"+"Mouillage Pescadou (" + hcorps + "m et " + marge + "m de tirant d'eau) " + passage(hcorps+marge) +"<br>" ;
